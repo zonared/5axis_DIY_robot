@@ -121,7 +121,7 @@ motor_dut   JointMotors[6];
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "E3y60r7lmwm8Qj-ihEAbRHylN1V4rFsC";
+char auth[] = "?????";
 
 /// telnet defaults to port 23
 TCPServer server = TCPServer(23);
@@ -140,14 +140,14 @@ void JT1_Enc_Count()
 
 	if(JointMotors[1].bForward)
 	{
-	    ++Joint_pos[1];
+		++Joint_pos[1];
 	}
 	else
 	{
-	    if(Joint_pos[1] > 0)
-    	{
-    	    --Joint_pos[1];
-	    }
+		if(Joint_pos[1] > 0)
+    		{
+			--Joint_pos[1];
+		}
 	}
 }
 
@@ -168,10 +168,10 @@ void JT2_Enc_Count()
 	}
 	else
 	{
-	    if(Joint_pos[2] > 0)
-    	{
-    	    --Joint_pos[2];
-	    }
+		if(Joint_pos[2] > 0)
+		{
+			--Joint_pos[2];
+		}
 	}
 }
 
@@ -188,14 +188,14 @@ void JT3_Enc_Count()
 
 	if(JointMotors[3].bForward)
 	{
-	    ++Joint_pos[3];
+		++Joint_pos[3];
 	}
 	else
 	{
-	    if(Joint_pos[3] > 0)
-    	{
-    	    --Joint_pos[3];
-	    }
+		if(Joint_pos[3] > 0)
+		{
+			--Joint_pos[3];
+		}
 	}
 }
 
@@ -212,14 +212,14 @@ void JT4_Enc_Count()
 
 	if(JointMotors[4].bForward)
 	{
-	    ++Joint_pos[4];
+		++Joint_pos[4];
 	}
 	else
 	{
-	    if(Joint_pos[4] > 0)
-    	{
-    	    --Joint_pos[4];
-	    }
+		if(Joint_pos[4] > 0)
+    		{
+			--Joint_pos[4];
+		}
 	}
 }
 
@@ -236,14 +236,14 @@ void JT5_Enc_Count()
 
 	if(JointMotors[5].bForward)
 	{
-	    ++Joint_pos[5];
+		++Joint_pos[5];
 	}
 	else
 	{
-	    if(Joint_pos[5] > 0)
-    	{
-    	    --Joint_pos[5];
-	    }
+		if(Joint_pos[5] > 0)
+		{
+			--Joint_pos[5];
+		}
 	}
 }
 
@@ -254,7 +254,7 @@ void JT5_Enc_Count()
 //**********************************************
 void motorStall()
 {
-    bMotorStalled = TRUE;
+	bMotorStalled = TRUE;
 }
 
 
@@ -284,12 +284,13 @@ uint16_t readi2c_encoder(uint8_t joint)
     if(Wire.requestFrom(0x26 + joint - 1, 7) > 0)    // request bytes from slave device
     {
         uint8_t i2c_ptr=0;
-        while(Wire.available()){   // slave may send less than requested
-            i2c_buf[i2c_ptr] = Wire.read();    // receive a byte as character
-            ++i2c_ptr;
-        }
-        return_val = ((uint16_t)i2c_buf[5]<<8) + i2c_buf[4];
-    }
+        while(Wire.available())   // slave may send less than requested
+		{
+			i2c_buf[i2c_ptr] = Wire.read();    // receive a byte as character
+			++i2c_ptr;
+		}
+		return_val = ((uint16_t)i2c_buf[5]<<8) + i2c_buf[4];
+	}
     else
     {
 /*        int clock_lost=0;
@@ -1428,54 +1429,58 @@ void CalibrateMotor(int joint)
 
 		case 1: // Prepaid to drive in reverse
 		{
-            JointMotors[joint].bForward = FALSE;
-            digitalWrite(JointMotors[joint].dir_pin, JointMotors[joint].bForward);
-            analogWrite(JointMotors[joint].pwm_pin,iCalSpeed,PWM_Freq);
+			JointMotors[joint].bForward = FALSE;
+			digitalWrite(JointMotors[joint].dir_pin, JointMotors[joint].bForward);
+			analogWrite(JointMotors[joint].pwm_pin,iCalSpeed,PWM_Freq);
 			comms_out.DATA.JointPos[joint] = 5000;
-            MotorStalled.reset();
+			MotorStalled.reset();
 			iCalJoint++;
-            Serial.printlnf("Step1: JT%u begin reverse at %u",joint, iCalSpeed);
-            bMotorStalled = FALSE;
+			Serial.printlnf("Step1: JT%u begin reverse at %u",joint, iCalSpeed);
+			bMotorStalled = FALSE;
 		}break;
 
 		case 2: // Wait for the motor start turning, or maybe its already fully reversed
 		{
-			if(comms_out.DATA.JointPos[joint] != lCalPosPre){
-                MotorStalled.reset();
-                bMotorStalled = FALSE;
-                lCalPosPre = comms_out.DATA.JointPos[joint];
+			if(comms_out.DATA.JointPos[joint] != lCalPosPre)
+			{
+				MotorStalled.reset();
+				bMotorStalled = FALSE;
+				lCalPosPre = comms_out.DATA.JointPos[joint];
 	        }
-		    if(bMotorStalled){
-                Serial.printlnf("Step2: JT%u stalled rev",joint);
-                bMotorStalled = FALSE;
-                iCalJoint++;
+		    if(bMotorStalled)
+			{
+				Serial.printlnf("Step2: JT%u stalled rev",joint);
+				bMotorStalled = FALSE;
+				iCalJoint++;
 		    }
 		}break;
 
 		case 3:	// Drive motor forward until Stalled
 		{
-            Serial.printlnf("Step3: JT%u drive fwd",joint);
-            JointMotors[joint].bForward = TRUE;
-            digitalWrite(JointMotors[joint].dir_pin, JointMotors[joint].bForward);
-            analogWrite(JointMotors[joint].pwm_pin,iCalSpeed,PWM_Freq);
-            comms_out.DATA.JointPos[joint]=0;
-            lCalPosPre = comms_out.DATA.JointPos[joint];
-            MotorStalled.reset();
+			Serial.printlnf("Step3: JT%u drive fwd",joint);
+			JointMotors[joint].bForward = TRUE;
+			digitalWrite(JointMotors[joint].dir_pin, JointMotors[joint].bForward);
+			analogWrite(JointMotors[joint].pwm_pin,iCalSpeed,PWM_Freq);
+			comms_out.DATA.JointPos[joint]=0;
+			lCalPosPre = comms_out.DATA.JointPos[joint];
+			MotorStalled.reset();
 			iCalJoint++;
-            bMotorStalled = FALSE;
+			bMotorStalled = FALSE;
 		}break;
 
 		case 4: // Wait for the motor start turning, or maybe its already fully reversed
 		{
-			if(comms_out.DATA.JointPos[joint] != lCalPosPre){
-                MotorStalled.reset();
-                bMotorStalled = FALSE;
-                lCalPosPre = comms_out.DATA.JointPos[joint];
+			if(comms_out.DATA.JointPos[joint] != lCalPosPre)
+			{
+				MotorStalled.reset();
+				bMotorStalled = FALSE;
+				lCalPosPre = comms_out.DATA.JointPos[joint];
 	        }
-		    if(bMotorStalled){
-                Serial.printlnf("Step4: JT%u stalled fwd",joint);
-                bMotorStalled = FALSE;
-                iCalJoint++;
+		    if(bMotorStalled)
+			{
+				Serial.printlnf("Step4: JT%u stalled fwd",joint);
+				bMotorStalled = FALSE;
+				iCalJoint++;
 		    }
 		}break;
 
