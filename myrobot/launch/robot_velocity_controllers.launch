@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+    <!--rosparam file="$(find myrobot)/config/hardware.yaml" command="load"/-->
+    <rosparam file="$(find myrobot)/config/ros_controllers_vel.yaml" command="load"/>
+    <rosparam file="$(find myrobot)/config/joint_limits.yaml" command="load"/>
+    <rosparam file="$(find myrobot)/config/joint_limits.yaml" command="load"/>
+
+    <arg name="node_start_delay" default="2.5" />  
+
+    <param name="robot_description" textfile="$(find robotarm_individual)/urdf/robotarm_individual.urdf" />
+    <node name="myrobot_node" pkg="myrobot" type="myrobot_node" output="screen" args="Y 40"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="joint_state_controller arm_controller gripper_controller" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " />
+        <!--args="joint_state_controller myrobot/joint_1 myrobot/joint_2 myrobot/joint_3 myrobot/joint_4 myrobot/joint_5"/-->
+</launch>
+

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <rosparam file="$(find myrobot)/config/joint_limits.yaml" command="load"/>
+    <node name="myrobot_node" pkg="myrobot" type="myrobot_node" output="screen" args="Y 40"/>
+</launch>
+
