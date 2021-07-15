@@ -1,0 +1,36 @@
+ros_control_namespace: /
+#controller_manager_ns: controller_manager
+
+#typedef forward_command_controller::ForwardCommandController<hardware_interface::PositionJointInterface>
+#        JointPositionController;
+
+
+controller_list:
+ - name: arm_controller
+   action_ns: follow_joint_trajectory
+   type: FollowJointTrajectory
+   default: false
+   joints:
+     - jt1_joint
+     - jt2_joint
+     - jt3_joint
+     - jt4_joint
+   allowed_execution_duration_scaling: 1.2
+   allowed_goal_duration_margin: 0.5
+
+ - name: gripper_controller
+   action_ns: follow_joint_trajectory
+   type: FollowJointTrajectory
+   default: false
+   parallel: false
+   joints:
+     - jt5_joint
+
+initial:  # Define initial robot poses.
+  - group: jaycar_arm
+    pose: home
+
+
+#   action_ns: follow_joint_trajectory
+#   type: FollowJointTrajectory
+

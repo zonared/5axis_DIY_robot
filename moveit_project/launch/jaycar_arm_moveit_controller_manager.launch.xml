@@ -1,0 +1,10 @@
+<launch>
+
+  <!-- Set the param that trajectory_execution_manager needs to find the controller plugin -->
+  <param name="moveit_controller_manager" value="moveit_ros_control_interface::MoveItControllerManager"/>
+  <!--param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/-->
+
+  <!-- The rest of the params are specific to this plugin -->
+  <!--<rosparam file="$(find jaycar_arm)/config/ros_controllers.yaml"/-->
+
+</launch>

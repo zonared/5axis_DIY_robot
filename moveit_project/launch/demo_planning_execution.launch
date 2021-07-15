@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--rosparam command="load" file="$(find jaycar_arm)/config/joint_names.yaml" /-->
+
+  <include file="$(find jaycar_arm)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+    <rosparam param="/source_list">[/joint_states]</rosparam>
+  </node-->
+
+  <include file="$(find jaycar_arm)/launch/move_group.launch">
+    <arg name="jaycar_arm" value="true"/>
+  </include>
+
+  <include file="$(find jaycar_arm)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+  </include>
+
+</launch>
+

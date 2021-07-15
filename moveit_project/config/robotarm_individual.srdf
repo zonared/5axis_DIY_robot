@@ -1,0 +1,145 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="robotarm_individual">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="gripper">
+        <joint name="jt5_joint" />
+    </group>
+    <group name="arm_group">
+        <joint name="jt1_joint" />
+        <joint name="jt2_joint" />
+        <joint name="jt3_joint" />
+        <joint name="jt4_joint" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="home" group="arm_group">
+        <joint name="jt1_joint" value="0" />
+        <joint name="jt2_joint" value="0" />
+        <joint name="jt3_joint" value="0" />
+        <joint name="jt4_joint" value="0" />
+    </group_state>
+    <group_state name="Vert_PickAppro" group="arm_group">
+        <joint name="jt1_joint" value="0" />
+        <joint name="jt2_joint" value="-0.2745" />
+        <joint name="jt3_joint" value="2.2469" />
+        <joint name="jt4_joint" value="-0.6441" />
+    </group_state>
+    <group_state name="Vert_Pick" group="arm_group">
+        <joint name="jt1_joint" value="0" />
+        <joint name="jt2_joint" value="-0.4864" />
+        <joint name="jt3_joint" value="2.222" />
+        <joint name="jt4_joint" value="-0.458" />
+    </group_state>
+    <group_state name="horiz_put_appro" group="arm_group">
+        <joint name="jt1_joint" value="0.0000" />
+        <joint name="jt2_joint" value="-1.4" />
+        <joint name="jt3_joint" value="1.0579" />
+        <joint name="jt4_joint" value="0.83" />
+    </group_state>
+    <group_state name="horiz_put" group="arm_group">
+        <joint name="jt1_joint" value="0.0000" />
+        <joint name="jt2_joint" value="-1.7417" />
+        <joint name="jt3_joint" value="0.7295" />
+        <joint name="jt4_joint" value="0.8452" />
+    </group_state>
+    <group_state name="Horiz_pick_depart" group="arm_group">
+        <joint name="jt1_joint" value="0.0000" />
+        <joint name="jt2_joint" value="-1.1436" />
+        <joint name="jt3_joint" value="0.6512" />
+        <joint name="jt4_joint" value="-0.7741" />
+    </group_state>
+    <group_state name="Horiz_Pick" group="arm_group">
+        <joint name="jt1_joint" value="0.0000" />
+        <joint name="jt2_joint" value="-1.3444" />
+        <joint name="jt3_joint" value="0.5906" />
+        <joint name="jt4_joint" value="-0.6235" />
+    </group_state>
+    <group_state name="Horiz_turned_appro" group="arm_group">
+        <joint name="jt1_joint" value="0.7000" />
+        <joint name="jt2_joint" value="-1.1436" />
+        <joint name="jt3_joint" value="0.6512" />
+        <joint name="jt4_joint" value="-0.7741" />
+    </group_state>
+    <group_state name="Horiz_turned_put" group="arm_group">
+        <joint name="jt1_joint" value="0.7000" />
+        <joint name="jt2_joint" value="-1.7529" />
+        <joint name="jt3_joint" value="0.7471" />
+        <joint name="jt4_joint" value="0.8920" />
+    </group_state>
+    <group_state name="Horiz_turned_flip_appro" group="arm_group">
+        <joint name="jt1_joint" value="0.7000" />
+        <joint name="jt2_joint" value="-1.1725" />
+        <joint name="jt3_joint" value="0.6639" />
+        <joint name="jt4_joint" value="-0.731" />
+    </group_state>
+    <group_state name="Horiz_turned_flip" group="arm_group">
+        <joint name="jt1_joint" value="0.7000" />
+        <joint name="jt2_joint" value="-1.4032" />
+        <joint name="jt3_joint" value="0.5284" />
+        <joint name="jt4_joint" value="-0.6759" />
+    </group_state>
+    <group_state name="horiz_somwhere" group="arm_group">
+        <joint name="jt1_joint" value="0.0000" />
+        <joint name="jt2_joint" value="-0.4100" />
+        <joint name="jt3_joint" value="1.8181" />
+        <joint name="jt4_joint" value="0.6775" />
+    </group_state>
+    <group_state name="flat" group="arm_group">
+        <joint name="jt1_joint" value="0" />
+        <joint name="jt2_joint" value="-1.5757" />
+        <joint name="jt3_joint" value="0" />
+        <joint name="jt4_joint" value="0" />
+    </group_state>
+    <group_state name="clamp_close" group="gripper">
+        <joint name="jt5_joint" value="0.033" />
+    </group_state>
+    <group_state name="clamp_open" group="gripper">
+        <joint name="jt5_joint" value="0.00" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="gripper" parent_link="JT4_Link" group="gripper" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="Base_Link_Yellow" link2="JT1_Link" reason="Never" />
+    <disable_collisions link1="Base_Link_Yellow" link2="JT1_Link_Black" reason="Default" />
+    <disable_collisions link1="Base_Link_Yellow" link2="JT2_Link" reason="Never" />
+    <disable_collisions link1="Base_Link_Yellow" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="JT1_Link" link2="JT1_Link_Black" reason="Adjacent" />
+    <disable_collisions link1="JT1_Link" link2="JT2_Link" reason="Adjacent" />
+    <disable_collisions link1="JT1_Link" link2="JT4_Link" reason="Never" />
+    <disable_collisions link1="JT1_Link" link2="JT5_Link" reason="Never" />
+    <disable_collisions link1="JT1_Link" link2="JT5_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT1_Link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="JT1_Link_Black" link2="JT5_Link" reason="Never" />
+    <disable_collisions link1="JT1_Link_Black" link2="JT5_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT1_Link_Black" link2="base_link" reason="Default" />
+    <disable_collisions link1="JT2_Link" link2="JT3_Link" reason="Adjacent" />
+    <disable_collisions link1="JT2_Link" link2="JT3_Link_Fixed" reason="Never" />
+    <disable_collisions link1="JT2_Link" link2="JT4_Link" reason="Never" />
+    <disable_collisions link1="JT2_Link" link2="JT4_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT2_Link" link2="JT5_Link" reason="Never" />
+    <disable_collisions link1="JT2_Link" link2="JT5_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT3_Link" link2="JT3_Link_Fixed" reason="Adjacent" />
+    <disable_collisions link1="JT3_Link" link2="JT4_Link" reason="Adjacent" />
+    <disable_collisions link1="JT3_Link" link2="JT4_Link_Mimic" reason="Adjacent" />
+    <disable_collisions link1="JT3_Link" link2="JT5_Link" reason="Never" />
+    <disable_collisions link1="JT3_Link" link2="JT5_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT3_Link_Fixed" link2="JT4_Link" reason="Default" />
+    <disable_collisions link1="JT3_Link_Fixed" link2="JT4_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT3_Link_Fixed" link2="JT5_Link" reason="Never" />
+    <disable_collisions link1="JT3_Link_Fixed" link2="JT5_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT4_Link" link2="JT4_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT4_Link" link2="JT5_Link" reason="Adjacent" />
+    <disable_collisions link1="JT4_Link" link2="JT5_Link_Mimic" reason="Adjacent" />
+    <disable_collisions link1="JT4_Link_Mimic" link2="JT5_Link" reason="Never" />
+    <disable_collisions link1="JT4_Link_Mimic" link2="JT5_Link_Mimic" reason="Never" />
+    <disable_collisions link1="JT5_Link" link2="JT5_Link_Mimic" reason="Never" />
+</robot>
