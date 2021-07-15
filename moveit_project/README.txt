@@ -1,4 +1,4 @@
-This folder contains the MoveIT project which brings together all the other parts
+This folder contains the MoveIT project which brings together all the other parts, place all these files in your catkin_ws folder.
 
 you run it with the following ROS command:
 
