@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="robotarm_individual">
+  <link
+    name="base_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.101960784313725 0.101960784313725 0.101960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="JT1_Link">
+    <inertial>
+      <origin
+        xyz="-0.00104632874122108 -0.00181223126275569 0.020277621706242"
+        rpy="0 0 0" />
+      <mass
+        value="0.053202746550961" />
+      <inertia
+        ixx="9.60767382888992E-06"
+        ixy="-5.70329361330024E-07"
+        ixz="-6.01961156139681E-07"
+        iyy="2.00245729906274E-05"
+        iyz="-3.85205314489603E-08"
+        izz="1.69006019714302E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt1_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0128"
+      rpy="0 0 -3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="JT1_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.22"
+      upper="2.22"
+      effort="0"
+      velocity="0.1" />
+  </joint>
+  <link
+    name="JT2_Link">
+    <inertial>
+      <origin
+        xyz="0.0449913406932128 -0.000200000012511141 -0.000624940011745648"
+        rpy="0 0 0" />
+      <mass
+        value="0.0206939188351067" />
+      <inertia
+        ixx="1.44222723848835E-06"
+        ixy="-4.50727895979504E-14"
+        ixz="6.69205196662212E-09"
+        iyy="3.14896487489955E-06"
+        iyz="-3.28893078849756E-12"
+        izz="1.9239155310835E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt2_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0035 0 0.0207"
+      rpy="3.1416 -1.543 0" />
+    <parent
+      link="JT1_Link" />
+    <child
+      link="JT2_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.84"
+      upper="1.84"
+      effort="0"
+      velocity="0.1" />
+  </joint>
+  <link
+    name="JT3_Link">
+    <inertial>
+      <origin
+        xyz="-0.0308500000000035 -0.00181223126275568 8.91838686234436E-14"
+        rpy="0 0 0" />
+      <mass
+        value="0.106405493101922" />
+      <inertia
+        ixx="1.92153476577664E-05"
+        ixy="-2.16397216160851E-21"
+        ixz="-1.2039223121978E-06"
+        iyy="4.00491459812549E-05"
+        iyz="-2.01955263024075E-22"
+        izz="3.38012039428738E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT3_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT3_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt3_joint"
+    type="revolute">
+    <origin
+      xyz="0.089965 0 -0.0024998"
+      rpy="0 -0.027779 3.1416" />
+    <parent
+      link="JT2_Link" />
+    <child
+      link="JT3_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.63"
+      upper="2.63"
+      effort="0"
+      velocity="0.1" />
+  </joint>
+  <link
+    name="JT4_Link">
+    <inertial>
+      <origin
+        xyz="0.0229033891580146 0.00570817955080329 0.000739218753686311"
+        rpy="0 0 0" />
+      <mass
+        value="0.0327893218493341" />
+      <inertia
+        ixx="5.57203298390536E-06"
+        ixy="-1.49779316858189E-06"
+        ixz="2.89575645885117E-06"
+        iyy="1.14877025504296E-05"
+        iyz="9.078817865047E-07"
+        izz="8.31508522668882E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT4_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT4_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt4_joint"
+    type="revolute">
+    <origin
+      xyz="-0.11088 0 0"
+      rpy="-1.5708 0.016025 -3.1416" />
+    <parent
+      link="JT3_Link" />
+    <child
+      link="JT4_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="0"
+      velocity="0.1" />
+  </joint>
+  <link
+    name="JT5_Link">
+    <inertial>
+      <origin
+        xyz="6.8576E-05 0.0078713 -0.0064255"
+        rpy="0 0 0" />
+      <mass
+        value="0.0011193" />
+      <inertia
+        ixx="1.9918E-07"
+        ixy="3.9656E-10"
+        ixz="-1.4972E-09"
+        iyy="1.8743E-07"
+        iyz="3.9031E-08"
+        izz="1.8659E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT5_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT5_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="jt5_joint"
+    type="prismatic">
+    <origin
+      xyz="0.061928 0.01175 -0.036896"
+      rpy="1.5708 0 -1.5708" />
+    <parent
+      link="JT4_Link" />
+    <child
+      link="JT5_Link" />
+    <axis
+      xyz="0 0.67427 -0.73849" />
+    <limit
+      lower="0"
+      upper="0.033"
+      effort="0"
+      velocity="0.1" />
+  </joint>
+  <link
+    name="JT5_Link_Mimic">
+    <inertial>
+      <origin
+        xyz="6.8858E-05 0.021151 -0.020977"
+        rpy="0 0 0" />
+      <mass
+        value="0.0011188" />
+      <inertia
+        ixx="1.9894E-07"
+        ixy="3.9833E-10"
+        ixz="-1.5039E-09"
+        iyy="1.872E-07"
+        iyz="3.897E-08"
+        izz="1.8643E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT5_Link_Mimic.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT5_Link_Mimic.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JT5_Joint_Mimic"
+    type="prismatic">
+    <origin
+      xyz="0.04827855422954 0.0112500000000006 0.0471610703885282"
+      rpy="-1.5707963267949 0 1.57079632679489" />
+    <parent
+      link="JT4_Link" />
+    <child
+      link="JT5_Link_Mimic" />
+    <axis
+      xyz="0 0.674269364021332 -0.738485493928126" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="jt5_joint"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="JT4_Link_Mimic">
+    <inertial>
+      <origin
+        xyz="-4.77717961645248E-05 0.0099456000703949 -3.11959310606014E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00618464375958261" />
+      <inertia
+        ixx="5.86810430367686E-07"
+        ixy="6.32754915726527E-10"
+        ixz="2.12560510161703E-12"
+        iyy="1.11122672856724E-06"
+        iyz="8.72529608292501E-13"
+        izz="6.35988604119652E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT4_Link_Mimic.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT4_Link_Mimic.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JT4_Joint_Mimic"
+    type="revolute">
+    <origin
+      xyz="-0.0617000000000014 0.00829999999999955 0"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="JT3_Link" />
+    <child
+      link="JT4_Link_Mimic" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="jt4_joint"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="JT3_Link_Fixed">
+    <inertial>
+      <origin
+        xyz="-0.034585711593617 -0.0172997753775898 0.000821501839265839"
+        rpy="0 0 0" />
+      <mass
+        value="0.0248183851011529" />
+      <inertia
+        ixx="2.01038499500052E-06"
+        ixy="-1.26681646516093E-09"
+        ixz="1.26109052435355E-07"
+        iyy="1.05120933767312E-05"
+        iyz="-1.58130796051854E-12"
+        izz="1.10576189937727E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT3_Link_Fixed.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT3_Link_Fixed.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JT3_Joint_Fixed"
+    type="fixed">
+    <origin
+      xyz="-0.0308500000000981 0 -0.0173000000000445"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="JT3_Link" />
+    <child
+      link="JT3_Link_Fixed" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="JT1_Link_Black">
+    <inertial>
+      <origin
+        xyz="-0.000273001752845465 0.00282934211006141 6.67920017675659E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.0319850146060535" />
+      <inertia
+        ixx="1.46418390433534E-05"
+        ixy="-2.78486111301293E-09"
+        ixz="-1.3070112921446E-07"
+        iyy="2.9029692347561E-05"
+        iyz="-2.70656010153181E-09"
+        izz="1.45805435355154E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT1_Link_Black.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/JT1_Link_Black.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="J1_Joint_Black"
+    type="fixed">
+    <origin
+      xyz="0 0 -0.0063"
+      rpy="1.5707963267949 0 -3.14159265358979" />
+    <parent
+      link="JT1_Link" />
+    <child
+      link="JT1_Link_Black" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Base_Link_Yellow">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/Base_Link_Yellow.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotarm_individual/meshes/Base_Link_Yellow.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Base_Joint_Fixed"
+    type="fixed">
+    <origin
+      xyz="0 0 -0.028"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="Base_Link_Yellow" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

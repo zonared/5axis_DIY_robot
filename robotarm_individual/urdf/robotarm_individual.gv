@@ -1,0 +1,35 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"Base_Link_Yellow" [label="Base_Link_Yellow"];
+"JT1_Link" [label="JT1_Link"];
+"JT1_Link_Black" [label="JT1_Link_Black"];
+"JT2_Link" [label="JT2_Link"];
+"JT3_Link" [label="JT3_Link"];
+"JT3_Link_Fixed" [label="JT3_Link_Fixed"];
+"JT4_Link_Mimic" [label="JT4_Link_Mimic"];
+"JT4_Link" [label="JT4_Link"];
+"JT5_Link_Mimic" [label="JT5_Link_Mimic"];
+"JT5_Link" [label="JT5_Link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "Base_Joint_Fixed" [label="xyz: 0 0 -0.028 \nrpy: -1.5708 -5.55112e-17 -1.5708"]
+"Base_Joint_Fixed" -> "Base_Link_Yellow"
+"base_link" -> "jt1_joint" [label="xyz: 0 0 0.0128 \nrpy: 0 0 3.14159"]
+"jt1_joint" -> "JT1_Link"
+"JT1_Link" -> "J1_Joint_Black" [label="xyz: 0 0 -0.0063 \nrpy: 1.5708 -0 -3.14159"]
+"J1_Joint_Black" -> "JT1_Link_Black"
+"JT1_Link" -> "jt2_joint" [label="xyz: -0.0035 0 0.0207 \nrpy: -3.14159 -1.543 0"]
+"jt2_joint" -> "JT2_Link"
+"JT2_Link" -> "jt3_joint" [label="xyz: 0.089965 0 -0.0024998 \nrpy: 0 -0.027779 -3.14159"]
+"jt3_joint" -> "JT3_Link"
+"JT3_Link" -> "JT3_Joint_Fixed" [label="xyz: -0.03085 0 -0.0173 \nrpy: -1.5708 0 0"]
+"JT3_Joint_Fixed" -> "JT3_Link_Fixed"
+"JT3_Link" -> "JT4_Joint_Mimic" [label="xyz: -0.0617 0.0083 0 \nrpy: 0 1.5708 -0"]
+"JT4_Joint_Mimic" -> "JT4_Link_Mimic"
+"JT3_Link" -> "jt4_joint" [label="xyz: -0.11088 0 0 \nrpy: -1.5708 0.016025 3.14159"]
+"jt4_joint" -> "JT4_Link"
+"JT4_Link" -> "JT5_Joint_Mimic" [label="xyz: 0.0482786 0.01125 0.0471611 \nrpy: -1.5708 -0 1.5708"]
+"JT5_Joint_Mimic" -> "JT5_Link_Mimic"
+"JT4_Link" -> "jt5_joint" [label="xyz: 0.061928 0.01175 -0.036896 \nrpy: 1.5708 -0 -1.5708"]
+"jt5_joint" -> "JT5_Link"
+}
