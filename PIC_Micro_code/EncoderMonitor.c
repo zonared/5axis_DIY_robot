@@ -15,7 +15,7 @@
 
 #use i2c(SLAVE, SDA=PIN_B1, SCL=PIN_B4, address=0x50, FAST=100000, FORCE_HW, NO_STRETCH)	// Joint 3
 
-#use RS232(Baud=9600,Xmit=PIN_B5,Rcv=PIN_B2,brgh1ok,ERRORS,Stream=COMMS)
+#use RS232(Baud=9600,Xmit=PIN_B5,Rcv=PIN_B2,brgh1ok,ERRORS,Stream=DEBUG)
 
 #byte SSPBUF =  0x13
 #byte SSPcon = 0x14
@@ -50,11 +50,11 @@ struct sspcon_control {
 #byte SSPCONbits = 0x14
 
 // #define EnocderA Chn		input(PIN_B0)		// Pin 6
-#define i2c_input_B1 	input(PIN_B1)			// Pin 7 i2c SDI
-// #define B2 RS232 RX								// Pin 8
-#define EncoderB			input(PIN_B3)			// Pin 9
-#define i2c_input_B4		input(PIN_B4)			// Pin 10 i2c SCK
-// #define B5 RS232 TX								// Pin 11
+#define i2c_input_B1 		input(PIN_B1)		// Pin 7 i2c SDI
+// #define B2 RS232 RX					// Pin 8
+#define EncoderB		input(PIN_B3)		// Pin 9
+#define i2c_input_B4		input(PIN_B4)		// Pin 10 i2c SCK
+// #define B5 RS232 TX					// Pin 11
 
 #byte PORTB = 0x06
 
@@ -119,7 +119,7 @@ void ssp_interrupt()
 	if(i2cStatus != 0x30)
 	{
 		i2cStatus = (SSPSTAT & 0b00101101);    //Mask out unimportant bits
-		fprintf(COMMS,"int %u%c%c", i2cStatus, 11, 13);
+		fprintf(DEBUG,"int %u%c%c", i2cStatus, 11, 13);
                      // D/A, S, R/W, BF
 		switch (i2cStatus){
 		//State 1 RX address, this state is activated when a new I2c Call is received
@@ -130,7 +130,7 @@ void ssp_interrupt()
 			DAStatus=1; // next call is address inside memory
 			if(SSPCONbits.SSPOV) SSPCONbits.SSPOV = 0;		//clear receive overflow indicator
 			if (SSPCONbits.SSPEN) SSPCONbits.CKP = 1;		//release the SCL line
-			fprintf(COMMS,"state1%c%c", 11, 13);
+			fprintf(DEBUG,"state1%c%c", 11, 13);
 			break;
      
 		case i2c_STATE2:	// STATE2  last byte was data
@@ -148,7 +148,7 @@ void ssp_interrupt()
 				if (RXBufferIndex>=RXBUFFER_SIZE) RXBufferIndex = 0; //RZ
 			}
 			if (SSPCONbits.SSPEN) SSPCONbits.CKP = 1;           //release the SCL line
-			fprintf(COMMS,"state2%c%c", 11, 13);
+			fprintf(DEBUG,"state2%c%c", 11, 13);
 			break;
          
 		case i2c_STATE3:	// STATE 3  master read last byte was address
@@ -158,7 +158,7 @@ void ssp_interrupt()
 			RXBufferIndex = 0;
 			I2CWrite(RXBuffer[RXBufferIndex]);    //write back the index of status requested
 			RXBufferIndex++;
-			fprintf(COMMS,"state3%c%c", 11, 13);
+			fprintf(DEBUG,"state3%c%c", 11, 13);
 			break;
 
 		case i2c_STATE4:	// STATE 4 last byte was data
@@ -167,17 +167,17 @@ void ssp_interrupt()
 				RXBufferIndex = 0;
 			I2CWrite(RXBuffer[RXBufferIndex]);    //write back the index of status requested
 			RXBufferIndex++;
-			fprintf(COMMS,"state4%c%c", 11, 13);
+			fprintf(DEBUG,"state4%c%c", 11, 13);
 			break;
 
 		case i2c_STATE5:	// STATE 5 logic reset by NACK from master
 							//SSPSTAT bits: D/A=1, S=1, R/W=0, BF=0, CKP=1
-			fprintf(COMMS,"state5%c%c", 11, 13);
+			fprintf(DEBUG,"state5%c%c", 11, 13);
 			break;
 				
 		default:
 			if (SSPCONbits.SSPEN) SSPCONbits.CKP = 1;           //release the SCL line
-			fprintf(COMMS,"state_x%c%c", 11, 13);
+			fprintf(DEBUG,"state_x%c%c", 11, 13);
 			break;
 		}//end switch (i2cStatus)
 	}// end if status !=30
@@ -247,6 +247,6 @@ void main()
 		++iHeartbeat;
 
 		delay_ms(500);
-		fprintf(COMMS,"Encoder %05lu%c%c", lEncoder, 11, 13);
+		fprintf(DEBUG,"Encoder %05lu%c%c", lEncoder, 11, 13);
 	}
 }
