@@ -5,7 +5,7 @@ The motor controller board consisted of the following items and features:
   RS232 TTL line driver (MAX232)
   LM324 op-amp for amplifying hall effect signals (this was before I figured out you can buy digital output hall effects)
   74LS08 AND gate for h-bridge (this was before I figured you could buy dedicated h-bridge output pairs built into microprocessors)
-  MPC17511AEP Bipolar Motor Driver CMOS Parallel 24-QFN-EP (aka h-bridge, since replaced with )
+  MPC17511AEP Bipolar Motor Driver CMOS Parallel 24-QFN-EP (aka h-bridge, since replaced with DRV8833 or POLOLU-2130)
   LM7805 linear regulator (good, but these are better OKI-78SR-5/1.5-W36-C by Murata Power)
 
 It didn't actually work out that great, had lots of electrical noise issues and daisychaining RS232 is a bad idea, this is why I changed to i2c board to board comms.
