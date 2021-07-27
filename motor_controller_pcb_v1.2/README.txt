@@ -10,5 +10,5 @@ The motor controller board consisted of the following items and features:
 
 It didn't actually work out that great, had lots of electrical noise issues and daisychaining RS232 is a bad idea, this is why I changed to i2c board to board comms.
 
-I have actually used some of these boards on other projects, so I wasn’t a total waste.
+I have actually used some of these boards on other projects, so it wasn’t a total waste.
 
